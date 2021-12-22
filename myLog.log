@@ -1,2 +1,0 @@
-2021-09-23 17:41:05,698 DEBUG: https://sheets.googleapis.com:443 "GET /v4/spreadsheets/1stuPZyyL1stbnOkUXw4QULle5LvKKKeJp40Smu3927Q/values/%27JourneyMessageHistory_Others%27%21A%3AA HTTP/1.1" 200 None
-2021-09-23 17:41:06,339 DEBUG: https://sheets.googleapis.com:443 "PUT /v4/spreadsheets/1stuPZyyL1stbnOkUXw4QULle5LvKKKeJp40Smu3927Q/values/%27JourneyMessageHistory_Others%27%21A2%3AH34?valueInputOption=RAW HTTP/1.1" 200 None
