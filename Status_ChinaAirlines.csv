@@ -1,0 +1,9 @@
+No.,Primary Key,API Name,Data Type,Source Object,Source Object (API Name),Source Data Type
+1,*,Name,Text(13),Journey Message History,Journey_Message_History__c,Auto Number
+2,,CARD_NO__C,Text(9),Journey Message History,Journey_Message_History__c,Text(9)
+3,,CARD_TYPE__C,Text(4),Journey Message History,Journey_Message_History__c,Picklist
+4,,CONTENT_NAME__C,Text(100),Journey Message History,Journey_Message_History__c,Text(100)
+5,,SENT_DATE__C,DateTime,Journey Message History,Journey_Message_History__c,Date/Time
+6,,TYPE__C,Text(3),Journey Message History,Journey_Message_History__c,Picklist
+7,,A_B_TEST__C,Text(1),Journey Content,Journey_Content__c,Picklist
+8,,STATUS__C,Text,Journey Message History,Journey_Message_History__c,Text

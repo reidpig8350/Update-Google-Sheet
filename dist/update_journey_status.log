@@ -1,0 +1,18 @@
+2021-09-28 11:24:19,460 DEBUG: Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2021-09-28 11:24:19,624 DEBUG: Making request: POST https://oauth2.googleapis.com/token
+2021-09-28 11:24:19,627 DEBUG: Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2021-09-28 11:24:19,716 DEBUG: https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2021-09-28 11:24:19,719 DEBUG: Starting new HTTPS connection (1): sheets.googleapis.com:443
+2021-09-28 11:24:20,550 DEBUG: https://sheets.googleapis.com:443 "GET /v4/spreadsheets/1stuPZyyL1stbnOkUXw4QULle5LvKKKeJp40Smu3927Q?includeGridData=false HTTP/1.1" 200 None
+2021-09-28 11:24:21,051 DEBUG: https://sheets.googleapis.com:443 "GET /v4/spreadsheets/1stuPZyyL1stbnOkUXw4QULle5LvKKKeJp40Smu3927Q/values/%27JourneyMessageHistory_Others%27%211%3A1 HTTP/1.1" 200 None
+2021-09-28 11:24:21,411 DEBUG: https://sheets.googleapis.com:443 "GET /v4/spreadsheets/1stuPZyyL1stbnOkUXw4QULle5LvKKKeJp40Smu3927Q/values/%27JourneyMessageHistory_Others%27%21A%3AA HTTP/1.1" 200 None
+2021-09-28 11:24:21,931 DEBUG: https://sheets.googleapis.com:443 "PUT /v4/spreadsheets/1stuPZyyL1stbnOkUXw4QULle5LvKKKeJp40Smu3927Q/values/%27JourneyMessageHistory_Others%27%21A2%3AH34?valueInputOption=RAW HTTP/1.1" 200 None
+2021-10-04 14:53:07,949 DEBUG: Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2021-10-04 14:53:08,143 DEBUG: Making request: POST https://oauth2.googleapis.com/token
+2021-10-04 14:53:08,145 DEBUG: Starting new HTTPS connection (1): oauth2.googleapis.com:443
+2021-10-04 14:53:08,270 DEBUG: https://oauth2.googleapis.com:443 "POST /token HTTP/1.1" 200 None
+2021-10-04 14:53:08,273 DEBUG: Starting new HTTPS connection (1): sheets.googleapis.com:443
+2021-10-04 14:53:09,168 DEBUG: https://sheets.googleapis.com:443 "GET /v4/spreadsheets/1stuPZyyL1stbnOkUXw4QULle5LvKKKeJp40Smu3927Q?includeGridData=false HTTP/1.1" 200 None
+2021-10-04 14:53:09,688 DEBUG: https://sheets.googleapis.com:443 "GET /v4/spreadsheets/1stuPZyyL1stbnOkUXw4QULle5LvKKKeJp40Smu3927Q/values/%27JourneyMessageHistory_Others%27%211%3A1 HTTP/1.1" 200 None
+2021-10-04 14:53:10,116 DEBUG: https://sheets.googleapis.com:443 "GET /v4/spreadsheets/1stuPZyyL1stbnOkUXw4QULle5LvKKKeJp40Smu3927Q/values/%27JourneyMessageHistory_Others%27%21A%3AA HTTP/1.1" 200 None
+2021-10-04 14:53:10,607 DEBUG: https://sheets.googleapis.com:443 "PUT /v4/spreadsheets/1stuPZyyL1stbnOkUXw4QULle5LvKKKeJp40Smu3927Q/values/%27JourneyMessageHistory_Others%27%21A2%3AH34?valueInputOption=RAW HTTP/1.1" 200 None
