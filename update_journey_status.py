@@ -29,82 +29,67 @@ logging.basicConfig(level=logging.DEBUG, filename='D:\\LOG\\GA\\update_journey_s
 update_speed = 2500
 
 print("開始更新資料")
-for i in range(0,3):
+
+for p in range(0,2):
     try:
-        
-        # 與GOOGLE DATA STUDIO 串聯資料
-        sheet_key = "1stuPZyyL1stbnOkUXw4QULle5LvKKKeJp40Smu3927Q"
+        # 與 GOOGLE DATA STUDIO 串聯資料
+        sheet_key = [
+            '1zBPL_pnV4MvdeLPKC7V8-aHG8r263-oQhLVrOMZ4WYY',
+            '1SOkE5Rhgj_8Gz4Z8CqxOI9gofkMmz4IQxepTFF5x4Zg',
+            '1M0PoabiySfcbMUgKOMOKNLqQhKzWUBO4XoSVjonouc0',
+            '1Bw2d3julQJlqMgyxKCjrIGE06vJp0puEEXkt3wNvf48',
+            '1TknRLmk1_TlMOIH7KJ-3qAOR71lxQuh11G5HY8b-9gY',
+            '1KOb7fPyRQhXZ8L6yrCjHa7OU6cxbrZ-CA1wMmZsbfFY',
+            '1SuL6ZuRPOCtGDFx-nGur1wEfXevWPXBvdpt0B47Ek-U',
+            '1Xu1BcJZijQl5_GZzuNom_6aSBwu8axGNC-KTQ7aCnLs',
+            '1iOxtRznybSM_rCvJrzcCWWnrQ5Yz1rw5ezfDFbTUQiY',
+            '1bh5u4SfsBsDvutfuhUw8EabFEQI7mFHFaZ84vqLDrvQ'
+        ]
 
         scopes = ["https://www.googleapis.com/auth/spreadsheets"]
         credentials = ServiceAccountCredentials.from_json_keyfile_name("TPESE_KEY.json", scopes)
         client = gspread.authorize(credentials)
-        sheet = client.open_by_key(sheet_key).sheet1
 
         Journey_Status = "D:\\Data\\SFMC\\JourneyMessageHistory_Others.csv"
 
         update_data = pd.read_csv(Journey_Status, encoding="utf-8")
         update_data = update_data.applymap(lambda x: "" if str(x)=="nan" else x)
 
-        sheet.batch_clear(['A2:H'])
+        for the_key in sheet_key:
+            sheet = client.open_by_key(the_key).sheet1
+            sheet.batch_clear(['A2:M'])
 
+        sheet_number = 0
         for i in range(0, int(len(update_data.index)/update_speed)+1):
 
-            update_data_division = update_data[i*update_speed: update_speed+i*update_speed]
-
-            if (sheet.get("1:1") == []):
-                sheet.update([update_data.columns.values.tolist()])
+            if (i!=0 and (i*update_speed%100000 == 0)):
+                sheet_number+=1
+            sheet = client.open_by_key(sheet_key[sheet_number]).sheet1
+   
+            if (i*update_speed%100000 == 0):
                 
-            start_range = ("A{start}:M{end}" .format(start=2+i*update_speed, end=2+update_speed+i*update_speed))
+                k = 0
+            
+            for j in range(0, 3):
+                try:
+                    update_data_division = update_data[i*update_speed: update_speed+i*update_speed]
 
-            sheet.update(start_range, update_data_division.values.tolist())
-            time.sleep(3)
+                    if (sheet.get("1:1") == []):
+                        sheet.update([update_data.columns.values.tolist()])
+                        
+                    start_range = ("A{start}:M{end}" .format(start=2+k*update_speed, end=2+update_speed+k*update_speed))
 
-        logging.debug('Successfully Updated!')
-
+                    sheet.update(start_range, update_data_division.values.tolist())
+                    k += 1
+                    time.sleep(3)
+                except:
+                    print(i, "Catch an exception, take a timeout for 3 seconds...")
+                    time.sleep(3)
+                    continue
+                break
+        
     except:
         print('Catch an exception during UPDATE PROCEDURE, try again')
         logging.debug('Catch an exception during UPDATE PROCEDURE', exc_info=True)
-
-        continue
-
-    break
-
-
-print("備份並複製資料")
-for j in range(0, 5):
-    try:
-        
-        # 備份資料APPEND
-        sheet_key = "1GhNbuF3UL9V0bg7mNNH6vC_kruyryWYkwMCcMBy4hSI"
-        scopes = ["https://www.googleapis.com/auth/spreadsheets"]
-        credentials = ServiceAccountCredentials.from_json_keyfile_name("TPESE_KEY.json", scopes)
-        client = gspread.authorize(credentials)
-        sheet = client.open_by_key(sheet_key).sheet1
-
-        Journey_Status = "D:\\Data\\SFMC\\JourneyMessageHistory_Others.csv"
-
-        update_data = pd.read_csv(Journey_Status, encoding="utf-8")
-        update_data = update_data.applymap(lambda x: "" if str(x)=="nan" else x)
-
-        for i in range(0, int(len(update_data.index)/update_speed)+1):
-
-            update_data_division = update_data[i*update_speed: update_speed+i*update_speed]
-
-            if (sheet.get("1:1") == []):
-                sheet.update([update_data.columns.values.tolist()])
-
-            get_sheet_index = sheet.get("A:A")
-            start_row = 1 + len(get_sheet_index)
-            end_row = 1 + len(get_sheet_index) + len(update_data_division.index)
-            start_range = ("A{start}:M{end}" .format(start=start_row, end=end_row))
-
-            sheet.update(start_range, update_data_division.values.tolist())
-            time.sleep(3)
-        logging.debug('Successfully BACKUP!')
-
-    except:
-        print('Catch an exception during BACKUP PROCEDURE', 'try again')
-        logging.debug('Catch an exception during BACKUP PROCEDURE', exc_info=True)
-        logging.debug('try again')
         continue
     break
