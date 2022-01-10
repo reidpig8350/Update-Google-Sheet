@@ -52,7 +52,8 @@ for p in range(0,2):
 
         Journey_Status = "D:\\Data\\SFMC\\JourneyMessageHistory_Others.csv"
 
-        update_data = pd.read_csv(Journey_Status, encoding="utf-8")
+        update_data = pd.read_csv(Journey_Status, encoding="utf-8",
+            dtype={'system_id': str,'sent_date__c': str,'content_name__c': str,'journey_content__r_a_b_test__c': str,'type__c': str,'card_no__c': str,'card_type__c': str,'status__c': str,'arrival_station__c': str,'departure_station__c': str,'pnr_number': str,'utm_content__c': str,'birthday_event_date': str})
         update_data = update_data.applymap(lambda x: "" if str(x)=="nan" else x)
 
         for the_key in sheet_key:
